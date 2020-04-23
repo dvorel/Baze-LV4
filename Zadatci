@@ -13,4 +13,14 @@ WHERE spol='F'
 ORDER BY datRod
 
 
+
 2.
+
+SELECT COUNT(mbr)
+FROM student
+
+SELECT COUNT(DISTINCT pbrPreb)
+FROM student
+
+3.
+
