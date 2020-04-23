@@ -24,3 +24,32 @@ FROM student
 
 3.
 
+SELECT p.naziv, AVG(ocjena) AS "Prosjek"
+FROM ispit AS i, predmet AS p
+WHERE i.sifpredmeta = p.sifra AND i.ocjena > 1
+GROUP BY p.naziv
+ORDER BY AVG(ocjena)
+
+4.
+
+SELECT s.ime, s.prezime, AVG(ocjena) AS "prosjek"
+FROM ispit as i, student as s
+WHERE i.mbrstud = s.mbr and i.ocjena > 1
+GROUP BY ime, prezime
+ORDER BY AVG(ocjena);
+
+//MAticni broj
+SELECT i.mbrStud AS "Maticni broj", AVG(ocjena) AS "Prosjek"
+FROM ispit as i, student as s
+GROUP BY mbrStud
+HAVING AVG(ocjena) > 2.5
+ORDER BY AVG(ocjena);
+
+
+5.
+
+CREATE VIEW prosjek_studenata AS
+SELECT p.naziv AS "Predmet", i.ocjena AS "Ocjena", i.datIspita AS "Datum", s.ime, s.prezime
+FROM ispit as i, student as s, predmet as p
+WHERE i.mbrstud = s.mbr and i.sifPredmeta = p.sifra
+GROUP BY naziv, ocjena, datIspita, ime, prezime;
